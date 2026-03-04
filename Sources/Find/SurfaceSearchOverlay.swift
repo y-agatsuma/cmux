@@ -50,12 +50,11 @@ struct SurfaceSearchOverlay: View {
                         onMoveFocusToTerminal()
                     }
                 }
-                .backport.onKeyPress(.return) { modifiers in
-                    let action = modifiers.contains(.shift)
+                .onSubmit {
+                    let action = NSEvent.modifierFlags.contains(.shift)
                     ? "navigate_search:previous"
                     : "navigate_search:next"
                     onNavigateSearch(action)
-                    return .handled
                 }
 
                 Button(action: {
